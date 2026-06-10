@@ -30,7 +30,16 @@ dateRangeInput2 <- function(inputId, label, minview = "days", maxview = "decades
                         shinyjs::disabled(selectInput('a', 'Team 4 (purple)', c("None", teams), selected = "Tunisia")),
                         div(style = "margin-top: 36px"),
                         tags$style(type="text/css", "#down {color: black; margin-left: 60px}"),
-                        downloadButton('down', 'Download image', class="butt1")
+                        downloadButton('down', 'Download image', class="butt1"),
+                        tags$div(
+                                style = "margin-top: 32px; padding: 0 20px; font-size: 11px; color: #b8c7ce; line-height: 1.6;",
+                                HTML(paste0(
+                                        'Fork by <strong>Piet Stam</strong> &mdash; ',
+                                        '<a href="https://github.com/pjastam/fifa-ranking" target="_blank" style="color:#b8c7ce; text-decoration:underline;">GitHub</a><br/>',
+                                        'Original by <strong>Ismael Gomez</strong> &mdash; ',
+                                        '<a href="https://github.com/Dato-Futbol/fifa-ranking" target="_blank" style="color:#b8c7ce; text-decoration:underline;">Dato-Futbol</a>'
+                                ))
+                        )
                 ),
         
                 dashboardBody(
