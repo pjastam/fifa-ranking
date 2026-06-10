@@ -10,7 +10,7 @@ library(shinyjs)
 
 options(shiny.usecairo = TRUE)
 
-data_path = "https://raw.githubusercontent.com/Dato-Futbol/fifa-ranking/refs/heads/master/ranking_fifa_historical.csv"
+data_path = "./ranking_fifa_historical.csv"
 
 data = read_csv(data_path, show_col_types = FALSE) %>%
        filter(!is.na(total_points)) %>%
