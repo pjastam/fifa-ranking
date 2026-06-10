@@ -1,5 +1,3 @@
-teams <- data %>% arrange(team) %>% pull("team") %>% unique()
-
 dateRangeInput2 <- function(inputId, label, minview = "days", maxview = "decades", ...) {
         d <- shiny::dateRangeInput(inputId, label, ...)
         d$children[[2L]]$children[[1]]$attribs[["data-date-min-view-mode"]] <- minview
@@ -13,6 +11,9 @@ shinyUI(
         dashboardPage(skin = "black",
                 dashboardHeader(title = "Historical FIFA Ranking", titleWidth = 250), #disable = T),
                 dashboardSidebar(width = 250,
+                        checkboxInput('wc2026_only',
+                                      'Show only WC 2026 participants',
+                                      value = FALSE),
                         dateRangeInput2('year',
                                        label = 'Date range:',
                                        start = "2010-01-01", end = max(data$date),

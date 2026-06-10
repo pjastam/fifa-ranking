@@ -31,6 +31,26 @@ shinyServer(function(input, output, session) {
                 data
         })
 
+        observe({
+                pool <- if (isTRUE(input$wc2026_only)) {
+                        intersect(teams, wc2026_teams)
+                } else {
+                        teams
+                }
+                keep <- function(current, with_none = FALSE) {
+                        valid <- if (with_none) c("None", pool) else pool
+                        if (!is.null(current) && current %in% valid) current else valid[1]
+                }
+                updateSelectInput(session, "x", choices = pool,
+                                  selected = keep(isolate(input$x)))
+                updateSelectInput(session, "y", choices = c("None", pool),
+                                  selected = keep(isolate(input$y), with_none = TRUE))
+                updateSelectInput(session, "z", choices = c("None", pool),
+                                  selected = keep(isolate(input$z), with_none = TRUE))
+                updateSelectInput(session, "a", choices = c("None", pool),
+                                  selected = keep(isolate(input$a), with_none = TRUE))
+        })
+
         observeEvent(input$y,{
                 if (input$y != input$x){
                         shinyjs::enable(id = "z")
