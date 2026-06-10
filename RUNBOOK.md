@@ -4,7 +4,8 @@ Operational reference for three recurring tasks specific to this fork
 ([pjastam/fifa-ranking](https://github.com/pjastam/fifa-ranking) of
 [Dato-Futbol/fifa-ranking](https://github.com/Dato-Futbol/fifa-ranking)).
 The live app runs on [Posit Connect Cloud](https://connect.posit.cloud)
-and auto-deploys from the `wc2026` branch.
+and auto-deploys from the `wc2026` branch. Public URL:
+<https://pjastam-fifa-ranking.share.connect.posit.cloud>.
 
 ## 1. Adding a new FIFA ranking release (live updates during WC 2026)
 
@@ -107,9 +108,10 @@ rows back to the end of the file before committing.
 
 ## 3. Maintaining the Connect Cloud deployment
 
-The app deploys automatically on each push to `wc2026`. Manual deploys
-or branch changes happen from the
-[Connect Cloud dashboard](https://connect.posit.cloud).
+The app deploys automatically on each push to `wc2026`. Manual deploys,
+branch changes, or access-setting changes happen from the
+[Connect Cloud dashboard](https://connect.posit.cloud). Live URL:
+<https://pjastam-fifa-ranking.share.connect.posit.cloud>.
 
 ### When to regenerate manifest.json
 
