@@ -1,8 +1,10 @@
 # Runbook
 
-Operational reference for two recurring tasks specific to this fork
+Operational reference for three recurring tasks specific to this fork
 ([pjastam/fifa-ranking](https://github.com/pjastam/fifa-ranking) of
 [Dato-Futbol/fifa-ranking](https://github.com/Dato-Futbol/fifa-ranking)).
+The live app runs on [Posit Connect Cloud](https://connect.posit.cloud)
+and auto-deploys from the `wc2026` branch.
 
 ## 1. Adding a new FIFA ranking release (live updates during WC 2026)
 
@@ -57,6 +59,10 @@ git commit -m "data: add YYYY-MM-DD release"
 git push
 ```
 
+Connect Cloud picks up the push automatically and redeploys within ~30
+seconds. No `manifest.json` regeneration is needed for a data-only
+change (only the CSV moved).
+
 ## 2. Submitting an upstream pull request
 
 Some commits on this fork are generally useful and could go upstream.
@@ -98,3 +104,46 @@ appends the 11 new rows without touching pre-existing ordering. The
 scraper's `arrange(desc(date))` makes this awkward — for an upstream-
 friendly variant, run the script once, then manually move only the new
 rows back to the end of the file before committing.
+
+## 3. Maintaining the Connect Cloud deployment
+
+The app deploys automatically on each push to `wc2026`. Manual deploys
+or branch changes happen from the
+[Connect Cloud dashboard](https://connect.posit.cloud).
+
+### When to regenerate manifest.json
+
+`manifest.json` pins R and every CRAN package version that the remote
+builder installs. Regenerate it whenever any of the following changes:
+
+- A new `library(...)` call is added (or an existing one removed) in
+  `global.R`, `ui.R`, or `server.R`.
+- The local R version is upgraded (current pin: 4.6.0).
+- A pinned package needs a different version (e.g. for a bug fix).
+
+Data-only changes (CSV updates from §1) do not need a regenerate.
+
+### Regenerate procedure
+
+From the repo root:
+
+```bash
+Rscript -e 'rsconnect::writeManifest()'
+git add manifest.json
+git commit -m "refresh manifest.json (<reason>)"
+git push
+```
+
+### Diagnosing a failed deploy
+
+1. Open the content's logs in the Connect Cloud dashboard. The build
+   log shows the `git fetch`, package install, and Shiny start phases.
+2. Most failures fall into two buckets:
+   - **Missing manifest** or **stale manifest** (a `library()` call
+     references a package not in `packages`): regenerate per above.
+   - **Package install failure on remote** (CRAN version mismatch, OS
+     library missing, etc.): pin to a known-good local R + package set
+     and regenerate; or downgrade the offending package locally and
+     regenerate.
+3. To roll back: in the dashboard, redeploy a previous commit. The
+   `git push` history on `wc2026` shows all candidate SHAs.
