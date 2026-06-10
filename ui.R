@@ -7,7 +7,6 @@ dateRangeInput2 <- function(inputId, label, minview = "days", maxview = "decades
         d
 }
 
-shinyUI(
         dashboardPage(skin = "black",
                 dashboardHeader(title = "Historical FIFA Ranking", titleWidth = 250), #disable = T),
                 dashboardSidebar(width = 250,
@@ -42,5 +41,3 @@ shinyUI(
                         )
                 )
         )
-                        
-)

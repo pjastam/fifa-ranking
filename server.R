@@ -1,4 +1,4 @@
-shinyServer(function(input, output, session) {
+function(input, output, session) {
         
         d <- reactive({
                 req(input$x)
@@ -72,7 +72,7 @@ shinyServer(function(input, output, session) {
                 q$date <- as.yearmon(q$date)
                 q$Details <- paste('<br>Team:', q$team, '<br>Rank: ', q$rank, '<br>Points:', q$points, '<br>Date: ', q$date)
                 
-                p <- ggplot(data = q, aes(y = rank, x = date, colour = team, label = Details), stat = "density") +
+                p <- ggplot(data = q, aes(y = rank, x = date, colour = team, label = Details)) +
                      geom_line(linewidth=0.5) + 
                      geom_point(size=1.2)
                 
@@ -108,4 +108,4 @@ shinyServer(function(input, output, session) {
                         ggsave(file, width = 12, height = 6)
                 }
         )  
-})
+}
