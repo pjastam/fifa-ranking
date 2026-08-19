@@ -35,7 +35,7 @@ dateRangeInput2 <- function(inputId, label, minview = "days", maxview = "decades
                                 style = "margin-top: 32px; padding: 0 20px; font-size: 11px; color: #b8c7ce; line-height: 1.6;",
                                 HTML(paste0(
                                         'Fork by <strong>Piet Stam</strong> &mdash; ',
-                                        '<a href="https://github.com/pjastam/fifa-ranking/tree/wc2026" target="_blank" style="color:#b8c7ce; text-decoration:underline;">GitHub</a><br/>',
+                                        '<a href="https://github.com/pjastam/fifa-ranking/tree/master" target="_blank" style="color:#b8c7ce; text-decoration:underline;">GitHub</a><br/>',
                                         'Original by <strong>Ismael Gómez Schmidt</strong> &mdash; ',
                                         '<a href="https://github.com/Dato-Futbol/fifa-ranking" target="_blank" style="color:#b8c7ce; text-decoration:underline;">Dato-Futbol</a>'
                                 ))

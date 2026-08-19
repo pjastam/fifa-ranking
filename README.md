@@ -2,7 +2,7 @@
 
 This repository contains the codes of a R Shiny app where you can visualize the men's FIFA ranking timeline of different nations.
 
-**Live (this fork, with WC 2026 features):** <https://pjastam-fifa-ranking.share.connect.posit.cloud> — deployed on Posit Connect Cloud from the `wc2026` branch; auto-redeploys on every push.
+**Live (this fork, with WC 2026 features):** <https://pjastam-fifa-ranking.share.connect.posit.cloud> — deployed on Posit Connect Cloud from the `master` branch; auto-redeploys on every push.
 
 [Link to upstream R Shiny app](https://bustami.shinyapps.io/ranking_fifa/) (last update: Sept 2024). That version still considers some extended features done by [Piet Stam](https://github.com/pjastam) in a previous pull request.
 

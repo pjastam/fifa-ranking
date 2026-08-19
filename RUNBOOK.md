@@ -1,10 +1,35 @@
 # Runbook
 
+> **Status: archived (August 2026).** Active maintenance of this fork has
+> ended. The live app keeps running, but there is no longer a working
+> copy on the maintainer's machine, and no further data updates are
+> planned. The repository itself stays writable, so the procedures below
+> remain valid — they just need a fresh clone first.
+>
+> **To resume work:**
+>
+> 1. `git clone git@github.com:pjastam/fifa-ranking.git`
+> 2. The scraper and release-check scripts live outside this repository,
+>    in the maintainer's `agents` repo as `agents/tools/fetch-fifa-rankings.R`
+>    and `agents/tools/check-fifa-newrelease.sh`. Retrieve those too, or
+>    §1 cannot be executed.
+> 3. Follow §1 as written. Pushing to `master` still triggers a Connect
+>    Cloud redeploy.
+>
+> **Branch note.** Development happened on a `wc2026` branch, which was
+> fast-forward merged into `master` at archive time and then deleted.
+> Commit SHAs referenced below are unchanged and still reachable from
+> `master`. Any external link to `tree/wc2026` is dead.
+>
+> **Unfinished business.** The upstream pull request described in §2 was
+> never submitted. The three candidate commits are still identified there
+> if anyone wants to pick this up.
+
 Operational reference for three recurring tasks specific to this fork
 ([pjastam/fifa-ranking](https://github.com/pjastam/fifa-ranking) of
 [Dato-Futbol/fifa-ranking](https://github.com/Dato-Futbol/fifa-ranking)).
 The live app runs on [Posit Connect Cloud](https://connect.posit.cloud)
-and auto-deploys from the `wc2026` branch. Public URL:
+and auto-deploys from the `master` branch. Public URL:
 <https://pjastam-fifa-ranking.share.connect.posit.cloud>.
 
 ## 1. Adding a new FIFA ranking release (live updates during WC 2026)
@@ -108,7 +133,7 @@ rows back to the end of the file before committing.
 
 ## 3. Maintaining the Connect Cloud deployment
 
-The app deploys automatically on each push to `wc2026`. Manual deploys,
+The app deploys automatically on each push to `master`. Manual deploys,
 branch changes, or access-setting changes happen from the
 [Connect Cloud dashboard](https://connect.posit.cloud). Live URL:
 <https://pjastam-fifa-ranking.share.connect.posit.cloud>.
@@ -148,4 +173,4 @@ git push
      and regenerate; or downgrade the offending package locally and
      regenerate.
 3. To roll back: in the dashboard, redeploy a previous commit. The
-   `git push` history on `wc2026` shows all candidate SHAs.
+   `git push` history on `master` shows all candidate SHAs.
